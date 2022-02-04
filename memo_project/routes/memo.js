@@ -32,8 +32,8 @@ router.get('/',memo.readAll);
 router.post('/',(req,res)=>{
     const memo = new Memo(req.body);
     memo.save((err,doc)=>{
-        if(err) res.status(200).send(err);
-        res.status(200).send(memo);
+        if(err) res.status(200).json({success:false,err});
+        res.status(200).json({success:true,doc});
     })
 })
 module.exports=router;
