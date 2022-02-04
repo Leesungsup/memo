@@ -11,18 +11,20 @@ const memo ={
                     err:'memo not found'
                 });
             }
-            res.send(memos);
+            console.log(memos)
+            res.status(200).json({success:true,memos});
         }catch(err){
-            res.status(500).send(err)
+            console.log("errrrr")
+            res.status(500).json({success:false,err})
         }
     },
     write: async(req,res)=>{
         try{
             const result = await Memo.create(req.body);
             console.log("result : ",result);
-            res.status(200).send(result);
+            res.status(200).json({success:true,result});
         }catch(err){
-            res.status(500).send(err);
+            res.status(500).json({success:false,err});
         }
     }
 }
