@@ -4,14 +4,17 @@ import './App.css';
 import Axios from 'axios';
 import plus from './plus.png';
 import Modal from './components/Modal';
+import {useNavigate } from 'react-router-dom';
 function App(props) {
+  const navigate = useNavigate();
   const [memos, setmemos] = useState([]);
   const [isModalOpen, setisModalOpen] = useState(false);
   const openModal = () => {
-    setisModalOpen(true)
+    setisModalOpen(!isModalOpen);
   } 
-  const closeModal = () => { 
-    setisModalOpen(false)
+  const closeModal = (e) => { 
+    setisModalOpen(!isModalOpen);
+    window.location.replace('/');
   }
   useEffect(() => {
     Axios.get('/memo')

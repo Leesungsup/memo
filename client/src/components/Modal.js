@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import './Modal.scss';
 import Axios from 'axios';
-
+import {useNavigate } from 'react-router-dom';
 function Modal(props) {
+    const navigate = useNavigate();
     const [title, settitle] = useState("");
     const [content, setcontent] = useState("");
     const [author, setauthor] = useState("");
@@ -26,8 +27,12 @@ function Modal(props) {
         .then(response=>{
             if(response.data.success){
                 console.log('성공적으로 업로드를 했습니다.')
+                setTimeout(()=>{
+                    console.log(props)
+                    navigate('/')
+                },3000);
             }else{
-                alert("비디오 업로드에 실패 했습니다.")
+                alert("메모 업로드에 실패 했습니다.")
             }
         })
     }
